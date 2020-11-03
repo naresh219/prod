@@ -1,5 +1,5 @@
 - name: web-server configuring with docker
-  hosts: servers 
+  hosts: all 
   gather_facts: yes
   tasks:
    - name: yum_repository for docker
