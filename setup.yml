@@ -1,6 +1,6 @@
 - name: web-server configuring with docker
   hosts: all 
-  gather_facts: yes
+  gather_facts: no
   tasks:
    - name: yum_repository for docker
      yum_repository:
