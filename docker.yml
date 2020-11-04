@@ -1,0 +1,41 @@
+- hosts: servers
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: installing docker repository
+      yum_repository:
+        name: docker repository
+        description: using for docker containers
+        file: /etc/yum.repos.d/docker
+        base_url: https://download.docker.com/linux/centos/7/x86_64/stable
+        gpgcheck: no
+        enabled: yes
+    - name: installing the docker
+      command: "yum install docker-ce --nobest -y"
+    - name: install python dependencies
+      package:
+        name: python36
+        state: present
+    - name: install docker python libraries
+      pip:
+        name: docker-py
+    - name: start a docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+    - name: pulling an image
+      docker_image:
+        name: httpd
+        source: pull
+    - name: creating a docker container
+      docker_container:
+        name: mywebserver
+        image: httpd
+        state: started
+        detach: yes
+        interactive: yes
+        ports:
+          - 80:80
+        volumes:
+          - .:/usr/local/apache2/htdocs/
