@@ -7,7 +7,7 @@
         name: docker repository
         description: using for docker containers
         file: /etc/yum.repos.d/docker
-        base_url: https://download.docker.com/linux/centos/7/x86_64/stable
+        base_url: https://download.docker.com/linux/centos/8/x86_64/stable
         gpgcheck: no
         enabled: yes
     - name: installing the docker

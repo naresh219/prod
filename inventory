@@ -1,0 +1,16 @@
+[towers]
+tower.example.com
+
+[servers]
+server.example.com
+
+[towerimp:children]
+towers
+servers
+
+[towerimp:vars]
+timeout=60
+ansible_become=yes
+ansible_user=cloud-user
+ansible_ssh_private_key_file="~/.ssh/75c9key.pem"
+ansible_ssh_common_args="-o StrictHostKeyChecking=no"
